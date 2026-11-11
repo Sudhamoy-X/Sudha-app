@@ -33,12 +33,9 @@ jobs:
           rm -rf lib
           cp -r _backup/lib .
           cp _backup/pubspec.yaml .
-          # ইন্টারনেট পারমিশন দেওয়া
           sed -i 's/<application/<uses-permission android:name="android.permission.INTERNET"\/>\n    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"\/>\n    <application android:usesCleartextTraffic="true"/' android/app/src/main/AndroidManifest.xml
-          # MinSdk 21 সেট করা
           sed -i 's/minSdk = flutter.minSdkVersion/minSdk = 21/' android/app/build.gradle || true
           sed -i 's/minSdkVersion = flutter.minSdkVersion/minSdkVersion = 21/' android/app/build.gradle || true
-          # Proguard এরর বাইপাস ফ্ল্যাগ
           echo "android.r8.proguardAndroidTxt.disallowed=false" >> android/gradle.properties
 
       - name: Get Packages
